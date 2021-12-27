@@ -1,3 +1,8 @@
+main.css
+------------
+
+
+
 #homepage {
   --color-text: #fff;
   --color-bg: #000;
@@ -687,6 +692,18 @@ nav ul li {
   padding-top: 20px; }
 .project_list .modal {
   color: #fcf5c7; }
+.project_list .buttons .button_wrapper {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 30%;
+  margin: 1%; }
+.project_list .modal-footer {
+  text-align: center !important;
+  height: auto;
+  height: 75px; }
+  .project_list .modal-footer .row {
+    margin-bottom: 0; }
+
 .project_list .modal-footer2 {
   background-color: #292929; }
 .project_list .project_info {
@@ -699,16 +716,13 @@ nav ul li {
   display: inline-block;
   width: 30%;
   margin: 1%; }
-.project_list .modal-footer {
-  text-align: center !important;
-  height: auto;
-  height: 75px; }
 .project_list .modal-footer2 {
   text-align: left !important;
   height: auto;
   height: 75px; }
-  .project_list .modal-footer .row {
+  .project_list .modal-footer2 .row {
     margin-bottom: 0; }
+
 .project_list .project_icons {
   margin-top: 20px;
   font-size: 1.3em; }
