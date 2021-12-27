@@ -81,6 +81,8 @@
   background-blend-mode: var(--blend-mode-5);
   animation-name: glitch-anim-flash; }
 
+.center {margin:0 auto; text-align:center;}
+
 /* Animations */
 @keyframes glitch-anim-1 {
   0% {
