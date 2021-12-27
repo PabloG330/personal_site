@@ -693,7 +693,7 @@ nav ul li {
   width: 30%;
   margin: 1%; }
 .project_list .modal-footer {
-  text-align: center !important;
+  text-align: left !important;
   height: auto;
   height: 75px; }
   .project_list .modal-footer .row {
