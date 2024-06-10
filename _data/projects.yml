@@ -33,15 +33,15 @@
                <p>Find out more about how I can help you and your business to grow, increase your ROAS, identify existing limitations, and more.</p>
                <br><p>Contact me today to arrange for a free 1 hour consultation on which I will assess whether your business may be a good fit for my services. To highlight the quality quality of this service, and reduce any possible doubts about the effectiveness of such, you will also be provided&nbsp;with free immediate suggestions for you to implement and experience results with right away. Through this method, I aim to establish trust and re-assurance, which I believe all customers should deserve.</p>
   
-  cover: PabloGarciaCardone.github.io/assets/images/project_covers/marketing.jpg
+  cover: assets/images/project_covers/marketing.jpg
   images: [
-    'PabloGarciaCardone.github.io/assets/images/project_images/tic_tac_toe/marketing1.jpg',
-    'PabloGarciaCardone.github.io/assets/images/project_images/tic_tac_toe/marketing2.jpg',
-    'PabloGarciaCardone.github.io/assets/images/project_images/tic_tac_toe/marketing3.jpg',
-    'PabloGarciaCardone.github.io/assets/images/project_images/tic_tac_toe/marketing4.jpg',
-    'PabloGarciaCardone.github.io/assets/images/project_images/tic_tac_toe/marketing5.jpg',
-    'PabloGarciaCardone.github.io/assets/images/project_images/tic_tac_toe/marketing6.jpg',
-    'PabloGarciaCardone.github.io/assets/images/project_images/tic_tac_toe/marketing7.jpg',
+    'assets/images/project_images/tic_tac_toe/marketing1.jpg',
+    'assets/images/project_images/tic_tac_toe/marketing2.jpg',
+    'assets/images/project_images/tic_tac_toe/marketing3.jpg',
+    'assets/images/project_images/tic_tac_toe/marketing4.jpg',
+    'assets/images/project_images/tic_tac_toe/marketing5.jpg',
+    'assets/images/project_images/tic_tac_toe/marketing6.jpg',
+    'Passets/images/project_images/tic_tac_toe/marketing7.jpg',
   ]
 
 - id: 3
@@ -97,13 +97,13 @@
                <p>Whether you are new to e-commerce or have experience with such, I am confident that I will be able to make a positive impact in your business.<br />&nbsp;<br />Contact me today to receive a free brief assessment report on your business, whether your business may be a good fit for my services and how I may be able to help your business, and ideas grow.</p>
                <br><p>To highlight the quality quality of this service, and reduce any possible doubts about the effectiveness of such, you will also be provided&nbsp;with free immediate suggestions for you to implement and experience results with right away. Through this method, I aim to establish trust and re-assurance, which I believe to be something that all customers deserve.<br />&nbsp;</p>
  
-  cover: PabloGarciaCardone.github.io/assets/images/project_covers/consulting.jpg
+  cover: assets/images/project_covers/consulting.jpg
   images: [
-    'PabloGarciaCardone.github.io/assets/images/project_images/consulting1.jpg',
-    'PabloGarciaCardone.github.io/assets/images/project_images/consulting2.jpg',
-    'PabloGarciaCardone.github.io/assets/images/project_images/consulting3.jpg',
-    'PabloGarciaCardone.github.io/assets/images/project_images/consulting4.jpg',
-    'PabloGarciaCardone.github.io/assets/images/project_images/consulting5.jpg',
+    'assets/images/project_images/consulting1.jpg',
+    'assets/images/project_images/consulting2.jpg',
+    'assets/images/project_images/consulting3.jpg',
+    'assets/images/project_images/consulting4.jpg',
+    'assets/images/project_images/consulting5.jpg',
   ]
 - id: 4
   title: Online Fitness Coaching
@@ -145,10 +145,10 @@
 
   cover: PabloGarciaCardone.github.io/assets/images/project_covers/fitness.jpg
   images: [
-    'PabloGarciaCardone.github.io/assets/images/project_images/fitness1.jpg',
-    'PabloGarciaCardone.github.io/assets/images/project_images/fitness2.jpg',
-    'PabloGarciaCardone.github.io/assets/images/project_images/fitness3.jpg',
-    'PabloGarciaCardone.github.io/assets/images/project_images/fitness4.jpg',
+    'assets/images/project_images/fitness1.jpg',
+    'assets/images/project_images/fitness2.jpg',
+    'assets/images/project_images/fitness3.jpg',
+    'assets/images/project_images/fitness4.jpg',
   ]
 # - name: Tic-tac-toe
 #   url: https://dbc-engage-me.herokuapp.com/
