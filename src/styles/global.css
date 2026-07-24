@@ -666,9 +666,14 @@ input[type=range]::-moz-range-thumb { width: 18px; height: 18px; border: 2px sol
 @media (max-width: 760px) {
   .stat-num, .metric-num, .c-result-num, .cs-metric-num, .cs-hero-num,
   .cs-anim-num, .calc-save-num, .fact-num, .svc-proof-num, .b-thumb-metric,
-  .cmp-card.featured .cmp-cost, .calc-pos, .calc-derived strong {
+  .cmp-card.featured .cmp-cost, .calc-pos, .calc-derived strong, .grad-text {
     background: none !important;
     -webkit-text-fill-color: #86f0ff !important;
     color: #86f0ff !important;
+  }
+  /* Brighten secondary text on phones so a force-dark browser can't dull it into the background */
+  :root {
+    --muted: #dee3f2;
+    --faint: #c0c6de;
   }
 }
