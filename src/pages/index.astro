@@ -1,0 +1,92 @@
+---
+import Base from '../layouts/Base.astro';
+import WhyMe from '../components/WhyMe.astro';
+import { CALENDLY, process } from '../data/site.js';
+
+const clients = ['Kellogg’s', 'Hasbro', 'Nestlé', 'Ferrero', 'Walmart', 'Arm', 'Hays', 'De Montfort University', 'TripleTen', 'PIB Insurance', 'EStoreLabs', 'Emet Digital', 'Orca Roofing', 'Vertex', 'Horsefly', 'UniBuddy', 'Edu4u', 'Green Leaf Zone', 'The Jewelers of Las Vegas', 'Expak Logistics', 'Maxferd', 'Atlas Roofing', 'Renovex Construction', 'Discount Hardwood', 'Triple 7 Movers', 'Bel Air Wood Flooring', 'Oscar & Rosa', 'WeStack Landscaping', 'Best Roofing', 'Frankel & Associates', 'Global Heating & Air'];
+const clientLoop = [...clients, ...clients];
+---
+<Base>
+  <section class="page hero">
+    <div class="container">
+      <div class="hero-badge reveal">
+        <span class="pulse-dot"></span>
+        <span data-en="Available for new clients · Q3 2026" data-es="Disponible para nuevos clientes · Q3 2026">Available for new clients · Q3 2026</span>
+      </div>
+
+      <h1 class="hero-title reveal">
+        <span data-en="Turn traffic into" data-es="Convierte tráfico en">Turn traffic into</span>
+        <span class="grad-text" data-en="predictable revenue." data-es="ingresos predecibles.">predictable revenue.</span>
+      </h1>
+
+      <p class="hero-sub reveal" data-en="Full-funnel growth consulting across SEO, PPC, Email, and Analytics. Built for measurable results that compound over time." data-es="Consultoría de crecimiento de embudo completo en SEO, PPC, Email y Analítica. Pensada para resultados medibles que se acumulan con el tiempo.">
+        Full-funnel growth consulting across SEO, PPC, Email, and Analytics. Built for measurable results that compound over time.
+      </p>
+
+      <div class="hero-cta reveal">
+        <a href={CALENDLY} target="_blank" rel="noopener" class="btn btn-primary" data-en="Book a free consultation" data-es="Agenda una consulta gratis">Book a free consultation</a>
+        <a href="/results" class="btn btn-ghost" data-en="See the results →" data-es="Ver resultados →">See the results →</a>
+      </div>
+
+      <div class="stat-band reveal">
+        <div class="stat">
+          <div class="stat-num" data-count="2400000" data-suffix="+" data-format="compact">0</div>
+          <div class="stat-label" data-en="Organic visits generated" data-es="Visitas orgánicas generadas">Organic visits generated</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num" data-count="47" data-prefix="$" data-suffix="M+" data-format="plain">0</div>
+          <div class="stat-label" data-en="Client revenue influenced" data-es="Ingresos de clientes influenciados">Client revenue influenced</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num" data-count="312" data-suffix="%" data-format="plain">0</div>
+          <div class="stat-label" data-en="Avg. ROAS uplift" data-es="Mejora promedio de ROAS">Avg. ROAS uplift</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num" data-count="60" data-suffix="+" data-format="plain">0</div>
+          <div class="stat-label" data-en="Brands scaled" data-es="Marcas escaladas">Brands scaled</div>
+        </div>
+      </div>
+
+      <div class="logo-strip reveal">
+        <span data-en="Trusted to drive growth by" data-es="Confían su crecimiento a mí">Trusted to drive growth by</span>
+        <div class="marquee proof-marquee" aria-hidden="true">
+          <div class="marquee-track" style="--speed:72s;">
+            {clientLoop.map((n) => (
+              <span class="t-item">{n}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="process-section">
+    <div class="container">
+      <div class="section-head reveal" style="max-width:640px;">
+        <span class="eyebrow" data-en="How we work" data-es="Cómo trabajamos">How we work</span>
+        <h2 class="section-title" data-en="From first call to compounding growth" data-es="De la primera llamada al crecimiento compuesto">From first call to compounding growth</h2>
+        <p class="section-lead" data-en="A clear path, no black box. Here's exactly what happens once we start." data-es="Un camino claro, sin caja negra. Esto es lo que pasa cuando empezamos.">A clear path, no black box. Here's exactly what happens once we start.</p>
+      </div>
+
+      <div class="process">
+        <div class="process-line" aria-hidden="true"></div>
+        {process.map((step, i) => (
+          <div class="p-step reveal" style={`transition-delay:${i * 70}ms`}>
+            <div class="p-node">
+              <span class="p-num">{String(i + 1).padStart(2, '0')}</span>
+              <i class={`ti ti-${step.icon}`} aria-hidden="true"></i>
+            </div>
+            <h3 class="p-step-t" data-en={step.t.en} data-es={step.t.es}>{step.t.en}</h3>
+            <p class="p-step-d" data-en={step.d.en} data-es={step.d.es}>{step.d.en}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="process-cta reveal">
+        <a href={CALENDLY} target="_blank" rel="noopener" class="btn btn-primary btn-lg" data-en="Start with a free call" data-es="Empieza con una llamada gratis">Start with a free call</a>
+      </div>
+    </div>
+  </section>
+
+  <WhyMe />
+</Base>

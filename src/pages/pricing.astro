@@ -1,0 +1,46 @@
+---
+import Base from '../layouts/Base.astro';
+import WhyMe from '../components/WhyMe.astro';
+import { pricing, CALENDLY } from '../data/site.js';
+---
+<Base title="Pricing · Pablo García Cardone">
+  <section class="page">
+    <div class="container">
+      <div class="section-head reveal" style="max-width:760px;margin-inline:auto;text-align:center;">
+        <span class="eyebrow" data-en="Engagements" data-es="Modalidades">Engagements</span>
+        <h2 class="section-title" data-en="Straightforward pricing, senior throughout" data-es="Precios claros, siempre senior">Straightforward pricing, senior throughout</h2>
+        <p class="section-lead" data-en="We'll set the final numbers together, scoped to the outcome you're after." data-es="Definiremos los números finales juntos, según el resultado que buscas.">
+          We'll set the final numbers together, scoped to the outcome you're after.
+        </p>
+      </div>
+
+      <div class="pricing-grid">
+        {pricing.map((p) => (
+          <div class={`p-card reveal${p.featured ? ' featured' : ''}`}>
+            {p.featured && p.badge && (
+              <span class="p-badge" data-en={p.badge.en} data-es={p.badge.es}>{p.badge.en}</span>
+            )}
+            <div class="p-name" data-en={p.name.en} data-es={p.name.es}>{p.name.en}</div>
+            <div class="p-desc" data-en={p.desc.en} data-es={p.desc.es}>{p.desc.en}</div>
+            <div class="p-price">
+              <span data-en={p.price.en} data-es={p.price.es}>{p.price.en}</span>
+              <small data-en={p.unit.en} data-es={p.unit.es}>{p.unit.en}</small>
+            </div>
+            <ul class="p-features">
+              {p.features.en.map((f, i) => (
+                <li data-en={f} data-es={p.features.es[i]}>{f}</li>
+              ))}
+            </ul>
+            <a href={CALENDLY} target="_blank" rel="noopener" class={`btn ${p.featured ? 'btn-primary' : 'btn-ghost'}`} data-en="Book a call" data-es="Agendar">Book a call</a>
+          </div>
+        ))}
+      </div>
+
+      <p class="pricing-note reveal" data-en="Every engagement starts with a free 30-minute strategy call. Month to month, no long contracts to sign." data-es="Cada proyecto empieza con una llamada de estrategia gratis de 30 min. Mes a mes, sin contratos largos.">
+        Every engagement starts with a free 30-minute strategy call. Month to month, no long contracts to sign.
+      </p>
+    </div>
+  </section>
+
+  <WhyMe />
+</Base>

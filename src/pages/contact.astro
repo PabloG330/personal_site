@@ -1,0 +1,72 @@
+---
+import Base from '../layouts/Base.astro';
+import { CALENDLY, EMAIL } from '../data/site.js';
+---
+<Base title="Contact · Pablo García Cardone">
+  <section class="page">
+    <div class="container">
+      <div class="section-head reveal" style="max-width:660px;margin-inline:auto;text-align:center;">
+        <span class="eyebrow" data-en="Let's talk" data-es="Hablemos">Let's talk</span>
+        <h2 class="section-title" data-en="Tell me where growth is stuck" data-es="Cuéntame dónde se estanca tu crecimiento">Tell me where growth is stuck</h2>
+        <p class="section-lead" data-en="The more I know going in, the more useful our first call is. Send a note or grab a time right now, whichever is easier." data-es="Cuanto más sepa de antemano, más útil será nuestra primera llamada. Envíame una nota o agenda ahora mismo, lo que te resulte más fácil.">
+          The more I know going in, the more useful our first call is. Send a note or grab a time right now, whichever is easier.
+        </p>
+      </div>
+
+      <div class="contact-grid reveal">
+        <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY" />
+          <input type="hidden" name="subject" value="New enquiry from pablocardone.com" />
+          <input type="hidden" name="from_name" value="pablocardone.com" />
+          <input type="checkbox" name="botcheck" class="cf-hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+          <div class="cf-row">
+            <div class="cf-field">
+              <label for="cfFirst" data-en="First name" data-es="Nombre">First name</label>
+              <input id="cfFirst" type="text" name="first_name" required />
+            </div>
+            <div class="cf-field">
+              <label for="cfLast" data-en="Last name" data-es="Apellido">Last name</label>
+              <input id="cfLast" type="text" name="last_name" required />
+            </div>
+          </div>
+          <div class="cf-field">
+            <label for="cfEmail" data-en="Email" data-es="Email">Email</label>
+            <input id="cfEmail" type="email" name="email" required />
+          </div>
+          <div class="cf-field">
+            <label for="cfTopic" data-en="What do you want to talk about?" data-es="¿De qué quieres hablar?">What do you want to talk about?</label>
+            <select id="cfTopic" name="topic" required>
+              <option value="" disabled selected data-en="Choose one…" data-es="Elige una…">Choose one…</option>
+              <option value="SEO & organic growth" data-en="SEO & organic growth" data-es="SEO y crecimiento orgánico">SEO & organic growth</option>
+              <option value="Paid ads (PPC)" data-en="Paid ads (PPC)" data-es="Publicidad pagada (PPC)">Paid ads (PPC)</option>
+              <option value="Email & retention" data-en="Email & retention" data-es="Email y retención">Email & retention</option>
+              <option value="Analytics & tracking" data-en="Analytics & tracking" data-es="Analítica y medición">Analytics & tracking</option>
+              <option value="Full-funnel / not sure yet" data-en="Full-funnel / not sure yet" data-es="Embudo completo / aún no sé">Full-funnel / not sure yet</option>
+              <option value="Something else" data-en="Something else" data-es="Otra cosa">Something else</option>
+            </select>
+          </div>
+          <div class="cf-field">
+            <label for="cfMsg" data-en="Tell me more" data-es="Cuéntame más">Tell me more</label>
+            <textarea id="cfMsg" name="message" rows="4" data-ph-en="A sentence or two about your business and what's going on." data-ph-es="Una o dos frases sobre tu negocio y qué está pasando." placeholder="A sentence or two about your business and what's going on."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" data-en="Send it over" data-es="Enviar">Send it over</button>
+          <p class="cf-status" id="cfStatus" hidden></p>
+        </form>
+
+        <aside class="contact-side">
+          <div class="contact-side-card">
+            <span class="eyebrow" data-en="Prefer to talk now?" data-es="¿Prefieres hablar ya?">Prefer to talk now?</span>
+            <h3 class="contact-side-h" data-en="Book a free 30-minute call" data-es="Agenda una llamada gratis de 30 min">Book a free 30-minute call</h3>
+            <p data-en="No pitch deck. We'll map where your growth is leaking and the fastest way to fix it." data-es="Sin presentación de venta. Mapeamos dónde se fuga tu crecimiento y la forma más rápida de resolverlo.">No pitch deck. We'll map where your growth is leaking and the fastest way to fix it.</p>
+            <a href={CALENDLY} target="_blank" rel="noopener" class="btn btn-primary btn-lg" data-en="Schedule Free Consultation" data-es="Agenda tu consulta gratis">Schedule Free Consultation</a>
+            <div class="contact-alt">
+              <span data-en="or email me directly" data-es="o escríbeme directo">or email me directly</span>
+              <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</Base>

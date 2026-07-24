@@ -1,0 +1,60 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+const fmt = (d) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+const chIcon = { seo: 'search', ppc: 'target-arrow', email: 'mail', analytics: 'chart-histogram' };
+---
+<Base title="Blog · Pablo García Cardone">
+  <section class="page">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow" data-en="Insights" data-es="Ideas">Insights</span>
+        <h2 class="section-title" data-en="Notes on growth that compounds" data-es="Notas sobre crecimiento que compounde">Notes on growth that compounds</h2>
+        <p class="section-lead" data-en="Practical thinking on SEO, PPC, email, and analytics. No filler, no growth-hacking myths." data-es="Ideas prácticas sobre SEO, PPC, email y analítica. Sin relleno ni mitos de growth-hacking.">
+          Practical thinking on SEO, PPC, email, and analytics. No filler, no growth-hacking myths.
+        </p>
+      </div>
+
+      <div class="filters reveal" data-target="#blogGrid">
+        <button class="chip is-active" data-filter="all" data-en="All" data-es="Todos">All</button>
+        <button class="chip" data-filter="seo">SEO</button>
+        <button class="chip" data-filter="ppc">PPC</button>
+        <button class="chip" data-filter="email">Email</button>
+        <button class="chip" data-filter="analytics" data-en="Analytics" data-es="Analítica">Analytics</button>
+      </div>
+
+      <div class="blog-grid" id="blogGrid">
+        {posts.map((post) => (
+          <a href={`/blog/${post.slug}`} class="b-card reveal" data-channel={post.data.channel}>
+            <div class={`b-thumb ch-${post.data.channel}`}>
+              {post.data.cover ? (
+                <video class="b-thumb-video" autoplay muted loop playsinline preload="metadata">
+                  <source src={`/media/${post.data.cover}.webm`} type="video/webm" />
+                  <source src={`/media/${post.data.cover}.mp4`} type="video/mp4" />
+                </video>
+              ) : (
+                <>
+                  <span class="b-thumb-grid" aria-hidden="true"></span>
+                  {post.data.caseStudy && post.data.resultNum
+                    ? <span class="b-thumb-metric">{post.data.resultNum}</span>
+                    : <i class={`ti ti-${chIcon[post.data.channel]} b-thumb-icon`} aria-hidden="true"></i>}
+                </>
+              )}
+              <span class="b-badge">{post.data.caseStudy ? post.data.client : post.data.channel}</span>
+            </div>
+            <div class="b-body">
+              <div class="b-meta">{fmt(post.data.date)} · {post.data.readingTime}</div>
+              <h3>{post.data.title}</h3>
+              <p>{post.data.description}</p>
+              <span class="b-more" data-en="Read →" data-es="Leer →">Read →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

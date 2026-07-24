@@ -1,0 +1,35 @@
+---
+import { CALENDLY } from '../data/site.js';
+---
+<header class="nav">
+  <div class="nav-inner">
+    <a href="/" class="brand" aria-label="Home">
+      <span class="brand-mark">PG</span>
+      <span class="brand-text">Pablo<span class="brand-dot">.</span>Cardone</span>
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="/services" class="nav-link" data-en="Services" data-es="Servicios">Services</a>
+      <a href="/results"  class="nav-link" data-en="Results"  data-es="Resultados">Results</a>
+      <a href="/pricing"  class="nav-link" data-en="Pricing"  data-es="Precios">Pricing</a>
+      <div class="nav-item nav-has-drop">
+        <a href="/about" class="nav-link nav-drop-trigger" data-en="About" data-es="Sobre mí">About <i class="ti ti-chevron-down nav-caret" aria-hidden="true"></i></a>
+        <div class="nav-drop">
+          <a href="/about" class="nav-drop-link nav-drop-about" data-en="About Me" data-es="Sobre mí">About Me</a>
+          <a href="/blog"  class="nav-drop-link" data-en="Blog" data-es="Blog">Blog</a>
+        </div>
+      </div>
+      <a href="/contact"  class="nav-link" data-en="Contact"  data-es="Contacto">Contact</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+        <span class="lang-opt is-active" data-lang="en">EN</span>
+        <span class="lang-sep">/</span>
+        <span class="lang-opt" data-lang="es">ES</span>
+      </button>
+      <a href={CALENDLY} target="_blank" rel="noopener" class="btn btn-primary btn-sm" data-en="Book a call" data-es="Agendar">Book a call</a>
+      <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>

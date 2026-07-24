@@ -1,0 +1,208 @@
+---
+import { CALENDLY } from '../data/site.js';
+
+const compare = [
+  {
+    key: 'me', featured: true,
+    name: { en: 'Working with me', es: 'Trabajar conmigo' },
+    cost: { en: '$3,000', es: '$3.000' },
+    unit: { en: '/ month', es: '/ mes' },
+    rows: [
+      { en: 'A senior specialist does the actual work', es: 'Un especialista senior hace el trabajo' },
+      { en: 'Starts in days', es: 'Empieza en días' },
+      { en: 'Month to month, no lock-in', es: 'Mes a mes, sin permanencia' },
+      { en: 'No hand-offs, no guessing', es: 'Sin traspasos, sin adivinar' },
+    ],
+  },
+  {
+    key: 'agency', featured: false,
+    name: { en: 'Marketing agency (a decent one)', es: 'Agencia de marketing (una decente)' },
+    cost: { en: '$5–8k', es: '$5–8k' },
+    unit: { en: '/ month', es: '/ mes' },
+    rows: [
+      { en: 'A mixed team, often juniors', es: 'Un equipo mixto, con juniors' },
+      { en: 'Starts in a week or two', es: 'Empieza en una o dos semanas' },
+      { en: '6–12 month contracts', es: 'Contratos de 6–12 meses' },
+      { en: 'Constant loops and hoops to go through', es: 'Vueltas y trámites constantes' },
+    ],
+  },
+  {
+    key: 'inhouse', featured: false,
+    name: { en: 'In-house hire', es: 'Contratación in-house' },
+    cost: { en: '$8k+', es: '$8k+' },
+    unit: { en: '/ month, loaded', es: '/ mes, con carga' },
+    rows: [
+      { en: 'One generalist across everything', es: 'Un generalista para todo' },
+      { en: '1–3 months to hire', es: '1–3 meses para contratar' },
+      { en: 'Salary, benefits, severance', es: 'Salario, beneficios, indemnización' },
+      { en: 'Full-time, but stretched thin', es: 'Full-time, pero desbordado' },
+    ],
+  },
+];
+---
+<section class="why-section">
+  <div class="container">
+    <div class="section-head reveal" style="max-width:660px;">
+      <span class="eyebrow" data-en="Why me" data-es="Por qué yo">Why me</span>
+      <h2 class="section-title" data-en="Senior growth, without the senior overhead" data-es="Crecimiento senior, sin el costo senior">Senior growth, without the senior overhead</h2>
+      <p class="section-lead" data-en="It costs less than the alternatives. It also starts faster, stays flexible, and puts a specialist on the work instead of a queue." data-es="Cuesta menos que las alternativas. Además empieza más rápido, es flexible y pone a un especialista en el trabajo, no en una fila.">
+        It costs less than the alternatives. It also starts faster, stays flexible, and puts a specialist on the work instead of a queue.
+      </p>
+    </div>
+
+    <div class="cmp-grid reveal">
+      {compare.map((c) => (
+        <div class={`cmp-card${c.featured ? ' featured' : ''}`}>
+          {c.featured && <span class="cmp-tag" data-en="Best value" data-es="Mejor valor">Best value</span>}
+          <div class="cmp-name" data-en={c.name.en} data-es={c.name.es}>{c.name.en}</div>
+          <div class="cmp-cost"><span data-en={c.cost.en} data-es={c.cost.es}>{c.cost.en}</span><small data-en={c.unit.en} data-es={c.unit.es}>{c.unit.en}</small></div>
+          <ul class="cmp-list">
+            {c.rows.map((r) => (
+              <li class={c.featured ? 'good' : ''} data-en={r.en} data-es={r.es}>{r.en}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <div class="calc-wrap reveal">
+      <div class="calc-switch" role="tablist">
+        <button class="calc-tab is-active" data-calc="cost" data-en="Cost of hiring" data-es="Costo de contratar">Cost of hiring</button>
+        <button class="calc-tab" data-calc="seo" data-en="SEO vs Paid" data-es="SEO vs Paid">SEO vs Paid</button>
+        <button class="calc-tab" data-calc="paid" data-en="Paid ROI" data-es="ROI de Paid">Paid ROI</button>
+      </div>
+
+      <!-- COST CALCULATOR -->
+      <div class="calc" data-calc-panel="cost" data-you="3000" data-mult="1.35">
+        <div class="calc-lead">
+          <h3 class="calc-h" data-en="What a hire really costs" data-es="Lo que cuesta de verdad una contratación">What a hire really costs</h3>
+          <p class="calc-p" data-en="Set what a marketing manager earns in your market. I'll show the real annual cost once benefits, taxes and overhead are added, next to my plan." data-es="Indica lo que gana un manager en tu mercado. Te muestro el costo anual real con beneficios, impuestos y overhead, junto a mi plan.">
+            Set what a marketing manager earns in your market. I'll show the real annual cost once benefits, taxes and overhead are added, next to my plan.
+          </p>
+        </div>
+        <div class="calc-panel">
+          <div class="calc-control">
+            <label for="calcSalary" data-en="In-house manager base salary" data-es="Salario base del manager in-house">In-house manager base salary</label>
+            <div class="calc-slider-row">
+              <input type="range" id="calcSalary" min="60000" max="160000" step="1000" value="95000" />
+              <output id="calcSalaryOut" class="calc-salary-out"></output>
+            </div>
+            <div class="calc-compare">
+              <div class="calc-line">
+                <span class="calc-line-label" data-en="In-house hire, fully loaded" data-es="Contratación in-house, con carga">In-house hire, fully loaded</span>
+                <span class="calc-line-val" id="calcInhouseYr"></span>
+              </div>
+              <div class="calc-line">
+                <span class="calc-line-label" data-en="Working with me, same year" data-es="Trabajar conmigo, mismo año">Working with me, same year</span>
+                <span class="calc-line-val calc-pos" id="calcYouYr"></span>
+              </div>
+            </div>
+            <p class="calc-note" data-en="Loaded at the standard 1.35× multiplier for benefits, payroll taxes and overhead. Figures are annual." data-es="Cargado al múltiplo estándar de 1.35× por beneficios, impuestos y overhead. Cifras anuales.">
+              Loaded at the standard 1.35× multiplier for benefits, payroll taxes and overhead. Figures are annual.
+            </p>
+          </div>
+          <div class="calc-savings">
+            <span class="calc-save-label" data-en="You save" data-es="Ahorras">You save</span>
+            <span class="calc-save-num" id="calcSave">$0</span>
+            <span class="calc-save-sub" data-en="a year vs. a fully-loaded in-house hire" data-es="al año frente a un in-house con carga total">a year vs. a fully-loaded in-house hire</span>
+            <a href={CALENDLY} target="_blank" rel="noopener" class="btn btn-primary" data-en="Put the difference to work" data-es="Pon la diferencia a trabajar">Put the difference to work</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEO VALUE CALCULATOR -->
+      <div class="calc" data-calc-panel="seo" data-cpc="5.42" hidden>
+        <div class="calc-lead">
+          <h3 class="calc-h" data-en="The long game: SEO vs paid" data-es="El juego largo: SEO vs paid">The long game: SEO vs paid</h3>
+          <p class="calc-p" data-en="Paid ads stop the day you stop paying. SEO keeps bringing the same visitors and leads with minimal effort, month after month. Here's the gap over time." data-es="Los ads se detienen el día que dejas de pagar. El SEO sigue trayendo los mismos visitantes y leads con mínimo esfuerzo, mes tras mes. Esta es la diferencia con el tiempo.">
+            Paid ads stop the day you stop paying. SEO keeps bringing the same visitors and leads with minimal effort, month after month. Here's the gap over time.
+          </p>
+        </div>
+        <div class="calc-panel">
+          <div class="calc-control">
+            <label for="seoVisits" data-en="Visitors you want each month" data-es="Visitantes que quieres al mes">Visitors you want each month</label>
+            <div class="calc-slider-row">
+              <input type="range" id="seoVisits" min="500" max="30000" step="500" value="5000" />
+              <output id="seoVisitsOut" class="calc-salary-out"></output>
+            </div>
+            <label for="seoCvr" class="calc-label-2" data-en="How many become leads or sales" data-es="Cuántos se vuelven leads o ventas">How many become leads or sales</label>
+            <div class="calc-slider-row">
+              <input type="range" id="seoCvr" min="1" max="10" step="0.5" value="3" />
+              <output id="seoCvrOut" class="calc-salary-out"></output>
+            </div>
+            <label for="seoCpc" class="calc-label-2" data-en="What you'd pay per click in ads" data-es="Lo que pagarías por clic en ads">What you'd pay per click in ads</label>
+            <div class="calc-slider-row">
+              <input type="range" id="seoCpc" min="0.5" max="15" step="0.01" value="5.42" />
+              <output id="seoCpcOut" class="calc-salary-out"></output>
+            </div>
+            <p class="calc-derived"><span data-en="That's about" data-es="Son unos">That's about</span> <strong id="seoLeadsMo">0</strong> <span data-en="leads or sales a month" data-es="leads o ventas al mes">leads or sales a month</span></p>
+            <div class="calc-timerow">
+              <span class="calc-time-lead" data-en="Look ahead" data-es="Mirando a">Look ahead</span>
+              <div class="calc-time" role="tablist">
+                <button class="calc-time-btn" data-yr="1" data-en="1 year" data-es="1 año">1 year</button>
+                <button class="calc-time-btn is-active" data-yr="3" data-en="3 years" data-es="3 años">3 years</button>
+                <button class="calc-time-btn" data-yr="5" data-en="5 years" data-es="5 años">5 years</button>
+              </div>
+            </div>
+            <p class="calc-note" data-en="In paid search, one click is one visitor, so buying the same traffic means paying for that many clicks. SEO takes upfront work to rank, then keeps delivering those visitors at about $0 per month." data-es="En búsqueda pagada, un clic es un visitante, así que comprar el mismo tráfico significa pagar por esa cantidad de clics. El SEO requiere trabajo inicial para posicionar, y luego entrega esos visitantes por cerca de $0 al mes.">
+              In paid search, one click is one visitor, so buying the same traffic means paying for that many clicks. SEO takes upfront work to rank, then keeps delivering those visitors at about $0 per month.
+            </p>
+          </div>
+          <div class="calc-savings">
+            <span class="calc-save-label" data-en="The same traffic from ads would cost" data-es="Ese mismo tráfico en ads costaría">The same traffic from ads would cost</span>
+            <span class="calc-save-num" id="seoPaidTotal">$0</span>
+            <span class="calc-save-sub"><span data-en="over" data-es="en">over</span> <span id="seoYears">3</span> <span data-en="years. That's" data-es="años. Son">years. That's</span> <strong id="seoPaidMo"></strong> <span data-en="a month, and it never stops" data-es="al mes, y nunca se detiene">a month, and it never stops</span></span>
+            <div class="calc-substat">
+              <strong id="seoLeadsTotal">0</strong>
+              <span data-en="leads SEO can deliver in that time" data-es="leads que el SEO puede entregar en ese tiempo">leads SEO can deliver in that time</span>
+            </div>
+            <a href={CALENDLY} target="_blank" rel="noopener" class="btn btn-primary" data-en="Build that engine" data-es="Construye ese motor">Build that engine</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAID ADS ROI CALCULATOR -->
+      <div class="calc" data-calc-panel="paid" data-cpc="5.42" hidden>
+        <div class="calc-lead">
+          <h3 class="calc-h" data-en="Paid ads: the fast lane" data-es="Paid ads: la vía rápida">Paid ads: the fast lane</h3>
+          <p class="calc-p" data-en="SEO builds over time. Paid delivers customers now, and scales the moment it's profitable. Here's what a monthly budget can return." data-es="El SEO se construye con el tiempo. El paid trae clientes ya, y escala en cuanto es rentable. Esto es lo que puede devolver un presupuesto mensual.">
+            SEO builds over time. Paid delivers customers now, and scales the moment it's profitable. Here's what a monthly budget can return.
+          </p>
+        </div>
+        <div class="calc-panel">
+          <div class="calc-control">
+            <label for="paidBudget" data-en="Monthly ad budget" data-es="Presupuesto mensual de ads">Monthly ad budget</label>
+            <div class="calc-slider-row">
+              <input type="range" id="paidBudget" min="500" max="50000" step="500" value="5000" />
+              <output id="paidBudgetOut" class="calc-salary-out"></output>
+            </div>
+            <label for="paidCvr" class="calc-label-2" data-en="Visitors who become customers" data-es="Visitantes que se vuelven clientes">Visitors who become customers</label>
+            <div class="calc-slider-row">
+              <input type="range" id="paidCvr" min="1" max="15" step="0.5" value="3" />
+              <output id="paidCvrOut" class="calc-salary-out"></output>
+            </div>
+            <label for="paidValue" class="calc-label-2" data-en="What a customer is worth to you" data-es="Cuánto vale un cliente para ti">What a customer is worth to you</label>
+            <div class="calc-slider-row">
+              <input type="range" id="paidValue" min="50" max="5000" step="50" value="500" />
+              <output id="paidValueOut" class="calc-salary-out"></output>
+            </div>
+            <p class="calc-derived"><span data-en="That's about" data-es="Son unos">That's about</span> <strong id="paidCustomers">0</strong> <span data-en="new customers a month" data-es="nuevos clientes al mes">new customers a month</span></p>
+            <p class="calc-note" data-en="Based on the 2026 average of $5.42 per click. Paid pays off while your return stays above 1×, and you can scale it up or pause it any time." data-es="Basado en el promedio 2026 de $5.42 por clic. El paid es rentable mientras tu retorno esté por encima de 1×, y puedes escalarlo o pausarlo cuando quieras.">
+              Based on the 2026 average of $5.42 per click. Paid pays off while your return stays above 1×, and you can scale it up or pause it any time.
+            </p>
+          </div>
+          <div class="calc-savings">
+            <span class="calc-save-label" data-en="For every $1 in ads, you get back" data-es="Por cada $1 en ads, recuperas">For every $1 in ads, you get back</span>
+            <span class="calc-save-num"><span id="paidRoas">0</span>×</span>
+            <span class="calc-save-sub" data-en="in revenue, starting this week" data-es="en ingresos, empezando esta semana">in revenue, starting this week</span>
+            <div class="calc-substat">
+              <strong id="paidRevenue">$0</strong>
+              <span data-en="a month in revenue from paid" data-es="al mes en ingresos de paid">a month in revenue from paid</span>
+            </div>
+            <a href={CALENDLY} target="_blank" rel="noopener" class="btn btn-primary" data-en="Make paid pay" data-es="Haz que el paid pague">Make paid pay</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

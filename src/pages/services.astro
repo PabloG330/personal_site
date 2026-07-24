@@ -1,0 +1,135 @@
+---
+import Base from '../layouts/Base.astro';
+import { serviceDetail, ticker, CALENDLY } from '../data/site.js';
+
+const channels = Object.keys(serviceDetail);
+const tickerLoop = [...ticker, ...ticker];
+---
+<Base title="Services · Pablo García Cardone">
+  <section class="page">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow" data-en="What I do" data-es="Qué hago">What I do</span>
+        <h2 class="section-title" data-en="A growth engine, not a menu of tasks" data-es="Un motor de crecimiento, no una lista de tareas">A growth engine, not a menu of tasks</h2>
+        <p class="section-lead" data-en="Pick a channel to see what’s inside: the sub-services, the proof, and the fastest route to a win." data-es="Elige un canal para ver qué incluye: los sub-servicios, la prueba y la ruta más rápida a un resultado.">
+          Pick a channel to see what’s inside: the sub-services, the proof, and the fastest route to a win.
+        </p>
+      </div>
+    </div>
+
+    <div class="marquee ticker reveal" aria-hidden="true">
+      <div class="marquee-track" style="--speed:52s;">
+        {tickerLoop.map((t) => (
+          <span class="t-item" data-en={t.en} data-es={t.es}>{t.en}</span>
+        ))}
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="filters reveal" id="serviceFilters">
+        <button class="chip is-active" data-channel="all" data-en="All services" data-es="Todos">All services</button>
+        {channels.map((ch) => (
+          <button class="chip" data-channel={ch}>{serviceDetail[ch].name.en.split(' ')[0]}</button>
+        ))}
+      </div>
+
+      <!-- ALL: core clickable cards -->
+      <div class="svc-core-grid" id="serviceAll">
+        {channels.map((ch) => {
+          const s = serviceDetail[ch];
+          return (
+            <button class="svc-core reveal" data-goto={ch}>
+              <div class="svc-core-head">
+                <span class="svc-core-icon"><i class={`ti ti-${s.icon}`} aria-hidden="true"></i></span>
+                <h3 data-en={s.name.en} data-es={s.name.es}>{s.name.en}</h3>
+              </div>
+              <p data-en={s.intro.en} data-es={s.intro.es}>{s.intro.en}</p>
+              <div class="svc-core-foot">
+                <div class="svc-core-tags">
+                  {s.subs.slice(0, 3).map((sub) => (
+                    <span data-en={sub.t.en} data-es={sub.t.es}>{sub.t.en}</span>
+                  ))}
+                </div>
+                <span class="svc-core-cta" data-en="Explore →" data-es="Ver más →">Explore →</span>
+              </div>
+            </button>
+          );
+        })}
+      </div>
+
+      <!-- DETAIL PANELS -->
+      <div class="svc-panels" id="servicePanels">
+        {channels.map((ch) => {
+          const s = serviceDetail[ch];
+          return (
+            <div class="svc-panel" data-panel={ch}>
+              <span class="svc-panel-back" data-back data-en="← All services" data-es="← Todos los servicios">← All services</span>
+              <div class="svc-panel-grid">
+                <div class="svc-panel-main">
+                  <h3 data-en={s.name.en} data-es={s.name.es}>{s.name.en}</h3>
+                  <p class="svc-panel-intro" data-en={s.intro.en} data-es={s.intro.es}>{s.intro.en}</p>
+                  <div class="subs">
+                    {s.subs.map((sub) => (
+                      <div class="sub">
+                        <span class="sub-ico"><i class={`ti ti-${sub.icon}`} aria-hidden="true"></i></span>
+                        <div>
+                          <div class="sub-t" data-en={sub.t.en} data-es={sub.t.es}>{sub.t.en}</div>
+                          <div class="sub-d" data-en={sub.d.en} data-es={sub.d.es}>{sub.d.en}</div>
+                        </div>
+                        <i class="ti ti-arrow-up-right sub-arrow" aria-hidden="true"></i>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <aside class="svc-rail">
+                  <div class="svc-proof">
+                    <span class="svc-proof-badge" data-en="After working together" data-es="Después de trabajar juntos">After working together</span>
+                    <div class="svc-proof-num">{s.proof.num}</div>
+                    <div class="svc-proof-label" data-en={s.proof.label.en} data-es={s.proof.label.es}>{s.proof.label.en}</div>
+                    <div class="svc-proof-quote" data-en={s.proof.quote.en} data-es={s.proof.quote.es}>{s.proof.quote.en}</div>
+                    <a href={`/blog/${s.proof.caseSlug}`} class="svc-readmore">
+                      <span data-en={`Read the ${s.proof.client} case study`} data-es={`Ver el caso de ${s.proof.client}`}>{`Read the ${s.proof.client} case study`}</span>
+                      <i class="ti ti-arrow-right" aria-hidden="true"></i>
+                    </a>
+                  </div>
+                  <div class="svc-cta-box">
+                    <span class="svc-cta-eyebrow"><span class="pulse-dot"></span><span data-en="Free strategy call" data-es="Llamada de estrategia gratis">Free strategy call</span></span>
+                    <p data-en="See exactly how this applies to your business, and the fastest route to a result." data-es="Descubre cómo aplica a tu negocio, y la ruta más rápida a un resultado.">See exactly how this applies to your business, and the fastest route to a result.</p>
+                    <a href={CALENDLY} target="_blank" rel="noopener" class="btn btn-primary btn-lg" data-en="Book Free Consultation" data-es="Agenda tu consulta gratis">Book Free Consultation</a>
+                    <span class="svc-cta-micro" data-en="Walk away with a plan for your biggest growth lever. Free, whether we work together or not." data-es="Sales con un plan para tu mayor palanca de crecimiento. Gratis, trabajemos juntos o no.">Walk away with a plan for your biggest growth lever. Free, whether we work together or not.</span>
+                  </div>
+                </aside>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <!-- OFFER / TRUST STRIP (CRO) -->
+      <div class="offer-strip reveal">
+        <div class="offer">
+          <span class="offer-ico"><i class="ti ti-user-star" aria-hidden="true"></i></span>
+          <div>
+            <h4 data-en="Better than an agency, easier than in-house" data-es="Mejor que una agencia, más fácil que un in-house">Better than an agency, easier than in-house</h4>
+            <p data-en="The senior expertise you'd expect from a top agency, with the direct access of an in-house lead. None of the overhead, headcount, or politics of either." data-es="La experiencia senior de una gran agencia, con el acceso directo de un líder in-house. Sin el costo fijo, la contratación ni la política de ninguno.">The senior expertise you'd expect from a top agency, with the direct access of an in-house lead. None of the overhead, headcount, or politics of either.</p>
+          </div>
+        </div>
+        <div class="offer">
+          <span class="offer-ico"><i class="ti ti-bulb" aria-hidden="true"></i></span>
+          <div>
+            <h4 data-en="Senior strategy, not just execution" data-es="Estrategia senior, no solo ejecución">Senior strategy, not just execution</h4>
+            <p data-en="You don't just get someone to run tasks. You get the thinking behind them: the judgment that decides what's worth doing in the first place." data-es="No solo consigues a alguien que ejecuta tareas. Consigues el criterio detrás de ellas: qué vale la pena hacer en primer lugar.">You don't just get someone to run tasks. You get the thinking behind them: the judgment that decides what's worth doing in the first place.</p>
+          </div>
+        </div>
+        <div class="offer">
+          <span class="offer-ico"><i class="ti ti-diamond" aria-hidden="true"></i></span>
+          <div>
+            <h4 data-en="A deliberately small roster" data-es="Una cartera deliberadamente pequeña">A deliberately small roster</h4>
+            <p data-en="I take on a handful of clients at a time. You get senior focus and real momentum, never a seat in a queue." data-es="Tomo pocos clientes a la vez. Recibes foco senior y momentum real, nunca un lugar en la fila.">I take on a handful of clients at a time. You get senior focus and real momentum, never a seat in a queue.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

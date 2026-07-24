@@ -1,0 +1,58 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { CALENDLY } from '../../data/site.js';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+const fmt = (d) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<Base title={`${post.data.title} · Pablo García Cardone`} description={post.data.description}>
+  <section class="page">
+    <div class="container">
+      <article class="post reveal">
+        <header class="post-head">
+          <a href="/blog" class="post-back" data-en="← All posts" data-es="← Todos los posts">← All posts</a>
+          {post.data.caseStudy ? (
+            <div class="cs-hero">
+              {post.data.cover && (
+                <div class="cs-hero-cover">
+                  <video autoplay muted loop playsinline preload="metadata">
+                    <source src={`/media/${post.data.cover}.webm`} type="video/webm" />
+                    <source src={`/media/${post.data.cover}.mp4`} type="video/mp4" />
+                  </video>
+                </div>
+              )}
+              <div class="cs-hero-tag">{post.data.client} · {post.data.clientTag}</div>
+              <h1 class="post-title">{post.data.title}</h1>
+              <div class="cs-hero-metric">
+                <span class="cs-hero-num">{post.data.resultNum}</span>
+                <span class="cs-hero-label">{post.data.resultLabel}</span>
+              </div>
+            </div>
+          ) : (
+            <div>
+              <div class="post-meta">{post.data.channel.toUpperCase()} · {fmt(post.data.date)} · {post.data.readingTime}</div>
+              <h1 class="post-title">{post.data.title}</h1>
+            </div>
+          )}
+        </header>
+        <div class="post-body">
+          <Content />
+        </div>
+        <div class="contact-card reveal" style="margin-top:56px;">
+          <h2 class="section-title" style="font-size:28px;" data-en="Ready to put this to work?" data-es="¿Listo para ponerlo en práctica?">Ready to put this to work?</h2>
+          <a href={CALENDLY} target="_blank" rel="noopener" class="btn btn-primary" data-en="Book a free consultation" data-es="Agenda una consulta gratis">Book a free consultation</a>
+        </div>
+      </article>
+    </div>
+  </section>
+</Base>

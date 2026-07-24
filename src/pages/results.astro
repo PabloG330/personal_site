@@ -1,0 +1,113 @@
+---
+import Base from '../layouts/Base.astro';
+import { cases, caseStudies } from '../data/site.js';
+---
+<Base title="Results · Pablo García Cardone">
+  <section class="page">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow" data-en="Proof" data-es="Pruebas">Proof</span>
+        <h2 class="section-title" data-en="Results that speak in numbers" data-es="Resultados que hablan en números">Results that speak in numbers</h2>
+        <p class="section-lead" data-en="Sample engagements. Filter by channel to see how the work plays out." data-es="Proyectos de ejemplo. Filtra por canal para ver cómo se traduce el trabajo.">
+          Sample engagements. Filter by channel to see how the work plays out.
+        </p>
+      </div>
+
+      <div class="metric-row reveal">
+        <div class="metric">
+          <div class="metric-num" data-count="518" data-suffix="%" data-format="plain">0</div>
+          <div class="metric-label" data-en="Peak organic growth" data-es="Pico de crecimiento orgánico">Peak organic growth</div>
+        </div>
+        <div class="metric">
+          <div class="metric-num" data-count="8" data-suffix="x" data-format="plain">0</div>
+          <div class="metric-label" data-en="Best email ROI" data-es="Mejor ROI de email">Best email ROI</div>
+        </div>
+        <div class="metric">
+          <div class="metric-num" data-count="63" data-suffix="%" data-format="plain">0</div>
+          <div class="metric-label" data-en="Avg. CPA reduction" data-es="Reducción media de CPA">Avg. CPA reduction</div>
+        </div>
+        <div class="metric">
+          <div class="metric-num" data-count="98" data-suffix="%" data-format="plain">0</div>
+          <div class="metric-label" data-en="Client retention rate" data-es="Tasa de retención de clientes">Client retention rate</div>
+        </div>
+      </div>
+
+      <div class="section-head reveal" style="margin-top:88px;max-width:620px;">
+        <span class="eyebrow" data-en="Case studies" data-es="Casos de estudio">Case studies</span>
+        <h2 class="section-title" data-en="The work behind the numbers" data-es="El trabajo detrás de los números">The work behind the numbers</h2>
+      </div>
+
+      <div class="cs-feature">
+        {caseStudies.map((cs) => (
+          <a href={`/blog/${cs.slug}`} class="cs-block reveal" data-channel={cs.channel}>
+            <div class="cs-media">
+              {cs.video ? (
+                <div class="cs-video-wrap">
+                  <video class="cs-video" autoplay muted loop playsinline preload="metadata">
+                    <source src={`/media/${cs.video}.webm`} type="video/webm" />
+                    <source src={`/media/${cs.video}.mp4`} type="video/mp4" />
+                  </video>
+                  <span class="cs-index">{cs.index}</span>
+                </div>
+              ) : (
+                <div class="cs-anim" data-ch={cs.channel} aria-hidden="true">
+                  <span class="cs-anim-orb a"></span>
+                  <span class="cs-anim-orb b"></span>
+                  <span class="cs-index">{cs.index}</span>
+                  <div class="cs-anim-center">
+                    <span class="cs-anim-num">{cs.metrics[0].num}</span>
+                    <span class="cs-anim-client">{cs.client}</span>
+                  </div>
+                </div>
+              )}
+            </div>
+            <div class="cs-content">
+              <span class="cs-tag" data-en={`${cs.client} · ${cs.tag.en}`} data-es={`${cs.client} · ${cs.tag.es}`}>{cs.client} · {cs.tag.en}</span>
+              <h3 class="cs-title" data-en={cs.title.en} data-es={cs.title.es}>{cs.title.en}</h3>
+              <p class="cs-summary" data-en={cs.summary.en} data-es={cs.summary.es}>{cs.summary.en}</p>
+              <div class="cs-metrics">
+                {cs.metrics.map((m) => (
+                  <div class="cs-metric">
+                    <span class="cs-metric-num">{m.num}</span>
+                    <span class="cs-metric-label" data-en={m.label.en} data-es={m.label.es}>{m.label.en}</span>
+                  </div>
+                ))}
+              </div>
+              <span class="cs-link" data-en="Read the case study" data-es="Ver el caso de estudio">Read the case study <i class="ti ti-arrow-right" aria-hidden="true"></i></span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div class="section-head reveal" style="margin-top:88px;max-width:620px;">
+        <span class="eyebrow" data-en="More proof" data-es="Más pruebas">More proof</span>
+        <h2 class="section-title" data-en="Selected client work" data-es="Trabajo seleccionado">Selected client work</h2>
+      </div>
+
+      <div class="filters reveal" data-target="#caseGrid">
+        <button class="chip is-active" data-filter="all" data-en="All" data-es="Todos">All</button>
+        <button class="chip" data-filter="seo">SEO</button>
+        <button class="chip" data-filter="ppc">PPC</button>
+        <button class="chip" data-filter="email">Email</button>
+        <button class="chip" data-filter="analytics" data-en="Analytics" data-es="Analítica">Analytics</button>
+      </div>
+
+      <div class="case-grid" id="caseGrid">
+        {cases.map((c) => (
+          <article class="c-card reveal" data-channel={c.channel}>
+            <div class="c-top">
+              <span class="c-badge">{c.channel}</span>
+              <span class="c-industry" data-en={c.industry.en} data-es={c.industry.es}>{c.industry.en}</span>
+            </div>
+            <h3 data-en={c.title.en} data-es={c.title.es}>{c.title.en}</h3>
+            <p data-en={c.desc.en} data-es={c.desc.es}>{c.desc.en}</p>
+            <div class="c-result">
+              <span class="c-result-num">{c.resultNum.en}</span>
+              <span class="c-result-label" data-en={c.resultLabel.en} data-es={c.resultLabel.es}>{c.resultLabel.en}</span>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

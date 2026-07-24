@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import { tools } from '../data/site.js';
+---
+<Base title="About · Pablo García Cardone">
+  <section class="page">
+    <div class="container">
+      <div class="about-wrap">
+        <div class="about-main reveal">
+          <span class="eyebrow" data-en="About" data-es="Sobre mí">About</span>
+          <h2 class="section-title" data-en="Hi, I'm Pablo." data-es="Hola, soy Pablo.">Hi, I'm Pablo.</h2>
+          <p class="about-p" data-en="I help ambitious brands turn scattered marketing into a compounding growth engine. For over a decade I've run SEO, paid media, email marketing, and analytics for companies from scrappy startups to enterprise-level category leaders." data-es="Ayudo a marcas ambiciosas a convertir un marketing disperso en un motor de crecimiento compuesto. Por más de una década he liderado SEO, medios pagados, email y analítica para empresas desde startups hasta líderes de categoría a nivel enterprise.">
+            I help ambitious brands turn scattered marketing into a compounding growth engine. For over a decade I've run SEO, paid media, email marketing, and analytics for companies from scrappy startups to enterprise-level category leaders.
+          </p>
+          <p class="about-p" data-en="My approach is simple. I find the one thing holding growth back, build the system to fix it, then measure relentlessly. No vanity metrics. Just the number that actually matters to your business." data-es="Mi enfoque es simple. Encuentro lo único que frena el crecimiento, construyo el sistema para resolverlo y luego mido sin descanso. Sin métricas de vanidad. Solo el número que de verdad le importa a tu negocio.">
+            My approach is simple. I find the one thing holding growth back, build the system to fix it, then measure relentlessly. No vanity metrics. Just the number that actually matters to your business.
+          </p>
+
+          <div class="stack reveal">
+            <div class="stack-head">
+              <h3 class="stack-title" data-en="Chances are, I already know your tools" data-es="Seguramente ya conozco tus herramientas">Chances are, I already know your tools</h3>
+              <p class="stack-sub" data-en="The platforms and systems I've worked in every day for over a decade." data-es="Las plataformas y sistemas con los que he trabajado a diario por más de una década.">The platforms and systems I've worked in every day for over a decade.</p>
+            </div>
+            {tools.map((group) => (
+              <div class="stack-group">
+                <div class="stack-cat"><i class={`ti ti-${group.icon}`} aria-hidden="true"></i><span data-en={group.cat.en} data-es={group.cat.es}>{group.cat.en}</span></div>
+                <div class="stack-chips">
+                  {group.items.map((item) => (<span class="stack-chip">{item}</span>))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <aside class="about-side reveal">
+          <div class="about-card">
+            <div class="about-avatar">PG</div>
+            <div class="about-facts">
+              <div class="fact"><span class="fact-num" data-count="12" data-suffix="+" data-format="plain">0</span><span class="fact-label" data-en="Years in growth" data-es="Años en growth">Years in growth</span></div>
+              <div class="fact"><span class="fact-num" data-count="60" data-suffix="+" data-format="plain">0</span><span class="fact-label" data-en="Brands scaled" data-es="Marcas escaladas">Brands scaled</span></div>
+              <div class="fact"><span class="fact-num" data-count="4" data-format="plain">0</span><span class="fact-label" data-en="Core channels" data-es="Canales clave">Core channels</span></div>
+            </div>
+            <ul class="about-list">
+              <li data-en="Ex-agency CMO, now independent" data-es="Ex-CMO de agencia, ahora independiente">Ex-agency CMO, now independent</li>
+              <li data-en="M.Sc. in Data Analytics & Risk Management" data-es="M.Sc. en Analítica de Datos y Gestión de Riesgos">M.Sc. in Data Analytics & Risk Management</li>
+              <li data-en="Full-funnel: SEO, paid, email & analytics" data-es="Full-funnel: SEO, paid, email y analítica">Full-funnel: SEO, paid, email & analytics</li>
+              <li data-en="Remote-first, based in Argentina" data-es="Remoto, con base en Argentina">Remote-first, based in Argentina</li>
+              <li data-en="Bilingual: English & Spanish" data-es="Bilingüe: Inglés y Español">Bilingual: English & Spanish</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</Base>
